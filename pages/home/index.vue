@@ -1,7 +1,8 @@
 <template>
   <section class="flex flex-col items-center gap-5 p-4 min-h-svh">
-    <div class="self-start">
+    <div class="flex items-center self-start justify-between w-full">
       <img src="/public/logo-black.png" alt="" class="w-[8rem]">
+      <NuxtLink to="/auth/login">Login</NuxtLink>
     </div>
     
     <div class="flex flex-col self-start w-full gap-3">
@@ -40,10 +41,11 @@
       </div>
     </div>
 
-    <BottomNavBar class="sticky mt-auto bottom-3 " />
   </section>
 </template>
 
 <script setup>
-
+definePageMeta({
+  layout: 'client',
+})
 </script>

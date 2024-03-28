@@ -15,26 +15,24 @@
     <form class="flex flex-col gap-5">
       <div class="flex flex-col gap-2">
         <label for="stage-name">DJ Name <span class="text-xs italic">(required)</span></label>
-        <input type="text" id="stage-name" name="stage-name" placeholder="what do you go by professionally" class="w-full p-2 bg-current focus:outline-none" />
+        <input type="text" id="stage-name" name="stage-name" placeholder="what do you go by professionally" class="w-full p-2 text-[#1A1B25] bg-[#EBECF1] focus:outline-none" />
       </div>
       <div class="flex flex-col gap-2">
         <label for="phone">Phone Number <span class="text-xs italic">(required)</span></label>
         <input type="tel" id="phone" name="phone" placeholder="your phone number" class="w-full p-2 bg-current focus:outline-none" />
       </div>
-
       <div class="flex flex-col gap-2">
-        <label for="events">What type of events do you do?</label>
-        <div class="flex flex-wrap gap-2 ">
-        <div v-for="event in events" :key="event" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
-          {{ event }}
-        </div>
-        </div>
+        <label for="description">Description <span class="text-xs italic">(optional)</span></label>
+        <textarea name="description" id="description" placeholder="tell us something about yourself" class="w-full p-2 bg-current focus:outline-none"></textarea>
       </div>
 
-      <NuxtLink to="/dashboard" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3 text-center">Continue</NuxtLink>
+      <NuxtLink to="/onboard/getlisted" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3 text-center">Continue</NuxtLink>
     </form>
 
-    
+    <div class="flex justify-center gap-2 mt-auto">
+      <div class="w-[4rem] h-2 rounded-full bg-[#EBECF1]"></div>
+      <div class="w-10 h-2 rounded-full bg-[#c2c2c5]"></div>
+    </div>
   </section>
 </template>
 

@@ -7,7 +7,9 @@
     <img src="/public/djART.png" alt="">
     <p class="text-3xl font-semibold text-center">Welcome to GrooveOn</p>
     <NuxtLink to="/auth/signup" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center">Create an account</NuxtLink>
-    <p class="text-sm text-center">Already have an account? <NuxtLink to="/auth/login" class="italic font-semibold underline">Log in</NuxtLink></p>
+    <NuxtLink to="/auth/login" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center">Log into existing account</NuxtLink>
+    <!-- <p class="text-sm text-center">Already have an account? <NuxtLink to="/auth/login" class="italic font-semibold underline">Log in</NuxtLink></p> -->
+    <NuxtLink to="/home" class="self-center text-sm underline">continue as guest</NuxtLink>
 </div>
 </section>
 </template>
