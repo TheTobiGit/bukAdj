@@ -15,15 +15,15 @@
     <form class="flex flex-col gap-5">
       <div class="flex flex-col gap-2">
         <label for="stage-name">DJ Name <span class="text-xs italic">(required)</span></label>
-        <input type="text" id="stage-name" name="stage-name" placeholder="what do you go by professionally" class="w-full p-2 text-[#1A1B25] bg-[#EBECF1] focus:outline-none" />
+        <input v-model="djName" type="text" id="stage-name" name="stage-name" placeholder="what do you go by professionally" class="w-full p-2 text-[#1A1B25] bg-[#EBECF1] focus:outline-none" />
       </div>
       <div class="flex flex-col gap-2">
         <label for="phone">Phone Number <span class="text-xs italic">(required)</span></label>
-        <input type="tel" id="phone" name="phone" placeholder="your phone number" class="w-full p-2 bg-current focus:outline-none" />
+        <input v-model="djPhone" type="tel" id="phone" name="phone" placeholder="your phone number" class="w-full p-2 bg-current focus:outline-none" />
       </div>
       <div class="flex flex-col gap-2">
         <label for="description">Description <span class="text-xs italic">(optional)</span></label>
-        <textarea name="description" id="description" placeholder="tell us something about yourself" class="w-full p-2 bg-current focus:outline-none"></textarea>
+        <textarea v-model="djDescription" name="description" id="description" placeholder="tell us something about yourself" class="w-full p-2 bg-current focus:outline-none"></textarea>
       </div>
 
       <NuxtLink to="/onboard/getlisted" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3 text-center">Continue</NuxtLink>
@@ -37,6 +37,8 @@
 </template>
 
 <script setup>
+const { djName, djPhone, djDescription } = useDJ();
+
 const events = ["wedding", "birthday", "concert", "festival", "corporate", "fundraiser", "charity", "product launch", "naming ceremony", "private party", "club event", "beach party", "house party", "barbecue", "pool party", "awards ceremony", "other"]
 
 useHead({

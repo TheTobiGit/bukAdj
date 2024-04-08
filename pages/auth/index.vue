@@ -3,7 +3,11 @@
 
 <img src="/public/logo.png" alt="" class="w-32">
 
-<div class="flex flex-col gap-5 mt-auto">
+<div class="hidden mt-80 lg:flex">
+<p class="lowercase ">Please Open On a mobile device to Continue</p>
+</div>
+
+<div class="flex flex-col gap-5 mt-auto lg:hidden">
     <img src="/public/djART.png" alt="">
     <p class="text-3xl font-semibold text-center">Welcome to GrooveOn</p>
     <NuxtLink to="/auth/signup" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center">Create an account</NuxtLink>

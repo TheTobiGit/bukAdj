@@ -1,5 +1,13 @@
 <template>
-<section class="h-svh w-screen bg-[#206A5D] flex flex-col text-[#EBECF1] p-4 gap-5">
+<section class="h-svh w-screen bg-[#206A5D] lg:flex flex-col items-center text-[#EBECF1] p-4 gap-5 hidden">
+
+    <img src="/public/logo.png" alt="" class="w-32">
+    <div class="hidden mt-80 lg:flex">
+        <p class="lowercase ">Please Open On a mobile device to Continue</p>
+    </div>
+</section>
+
+<section class="h-svh w-screen bg-[#206A5D] flex flex-col text-[#EBECF1] p-4 gap-5 lg:hidden">
 
     <div class="flex items-center justify-between">
         <NuxtLink to="./" class="">
@@ -38,12 +46,8 @@
 </section>
 </template>
 
-  
-    
-    
-  
 <script setup>
-    useHead({
-      title: 'Login',
-    })
+useHead({
+    title: 'Login',
+})
 </script>

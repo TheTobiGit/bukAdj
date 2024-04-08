@@ -1,5 +1,13 @@
 <template>
-  <section class="flex flex-col items-center gap-5 p-4 min-h-svh">
+  <section class="h-svh w-screen bg-[#206A5D] lg:flex flex-col items-center text-[#EBECF1] p-4 gap-5 hidden">
+
+<img src="/public/logo.png" alt="" class="w-32">
+<div class="hidden mt-80 lg:flex">
+    <p class="lowercase ">Please Open On a mobile device to Continue</p>
+</div>
+</section>
+
+  <section class="flex flex-col items-center gap-5 p-4 min-h-svh lg:hidden">
     <div class="flex items-center self-start justify-between w-full">
       <img src="/public/logo-black.png" alt="" class="w-[8rem]">
       <NuxtLink to="/auth/login">Login</NuxtLink>

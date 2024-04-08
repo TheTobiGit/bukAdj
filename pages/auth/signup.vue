@@ -1,5 +1,13 @@
 <template>
-<section class="h-svh w-screen bg-[#206A5D] flex flex-col text-[#EBECF1] p-4 gap-5">
+<section class="h-svh w-screen bg-[#206A5D] lg:flex flex-col items-center text-[#EBECF1] p-4 gap-5 hidden">
+
+<img src="/public/logo.png" alt="" class="w-32">
+<div class="hidden mt-80 lg:flex">
+    <p class="lowercase ">Please Open On a mobile device to Continue</p>
+</div>
+</section>
+
+<section class="h-svh w-screen bg-[#206A5D] flex flex-col text-[#EBECF1] p-4 gap-5 lg:hidden">
 
     <div class="flex items-center justify-between">
         <NuxtLink to="./" class="">
@@ -14,18 +22,18 @@
     <form class="flex flex-col gap-5">
         <div class="flex flex-col gap-2">
             <label for="name">Name</label>
-            <div class="flex gap-2">
-                <input type="text" id="fname" name="fname" placeholder="First Name" class="w-full p-2 bg-current focus:outline-none" />
-                <input type="text" id="lname" name="lname" placeholder="Last Name" class="w-full p-2 bg-current focus:outline-none" />
+            <div class="flex gap-2 text-black *:bg-[#EBECF1]">
+                <input v-model="firstName" type="text" id="fname" name="fname" placeholder="First Name" class="w-full p-2 bg-current focus:outline-none" />
+                <input v-model="lastName" type="text" id="lname" name="lname" placeholder="Last Name" class="w-full p-2 bg-current focus:outline-none" />
             </div>
         </div>
         <div class="flex flex-col gap-2">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="youremail@mail.com" class="w-full p-2 bg-current focus:outline-none" />
+            <input v-model="email" type="email" id="email" name="email" placeholder="youremail@mail.com" class="w-full p-2 text-black bg-[#EBECF1] focus:outline-none" />
         </div>
         <div class="flex flex-col gap-2">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="your password" class="w-full p-2 bg-current focus:outline-none" />
+            <input v-model="password" type="password" id="password" name="password" placeholder="your password" class="w-full p-2 text-black bg-[#EBECF1] focus:outline-none" />
         </div>
         <p class="text-xs italic">min 8 characters</p>
         <NuxtLink to="/onboard" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center">Signup</NuxtLink>
@@ -46,6 +54,8 @@
 </template>
 
 <script setup>
+const { email, password, firstName, lastName } = useAuth();
+
 useHead({
     title: 'Signup',
 })

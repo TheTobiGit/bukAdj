@@ -11,7 +11,7 @@
     <div class="flex flex-col gap-2">
         <label for="days">Which days are you available to work?</label>
         <div class="flex flex-wrap gap-2 ">
-            <div v-for="day in days" :key="day" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+            <div v-for="day in days" :key="day" @click="toggleDay(day)" :class="{ 'selected': selectedDays.includes(day) }"  class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
                 {{ day }}
             </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="flex flex-col gap-2">
         <label for="events">What type of events do you do?</label>
         <div class="flex flex-wrap gap-2 ">
-            <div v-for="event in events" :key="event" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+            <div v-for="event in events" :key="event" @click="toggleEvent(event)" :class="{ 'selected': selectedEvents.includes(event) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
                 {{ event }}
             </div>
         </div>
@@ -29,7 +29,7 @@
     <div class="flex flex-col gap-2">
         <label for="region">Which region do you operate in?</label>
         <div class="flex flex-wrap gap-2 ">
-            <div v-for="region in regions" :key="region" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+            <div v-for="region in regions" :key="region" @click="toggleRegion(region)" :class="{ 'selected': selectedRegions.includes(region) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
                 {{ region }}
             </div>
         </div>
@@ -47,21 +47,40 @@
         </select>
     </div>
 
-    <NuxtLink to="/dashboard" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3 text-center">Save</NuxtLink>
+    <NuxtLink to="/home" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3 text-center">Save</NuxtLink>
 
     <div class="flex justify-center gap-2 mt-auto">
         <div class="w-10 h-2 rounded-full bg-[#c2c2c5]"></div>
-      <div class="w-[4rem] h-2 rounded-full bg-[#EBECF1]"></div>
+        <div class="w-[4rem] h-2 rounded-full bg-[#EBECF1]"></div>
     </div>
 </section>
 </template>
 
 <script setup>
-const events = ["wedding", "birthday", "concert", "festival", "corporate", "fundraiser", "charity", "product launch", "naming ceremony", "private party", "club event", "beach party", "house party", "barbecue", "pool party", "awards ceremony", "other"]
-const days =["always", "weekdays", "weekends", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
-const regions = ["ashanti", "brong ahafo", "central", "eastern", "greater accra", "northern", "upper east", "upper west", "western", "volta", "savannah", "bono east", "oti", "ahafo", "western north", "north east"]
+const {
+    selectedDays,
+    selectedDaysList,
+    events,
+    days,
+    regions,
+    toggleDay,
+    toggleEvent,
+    selectedEvents,
+    selectedEventsList,
+    toggleRegion,
+    selectedRegions,
+    selectedRegionsList,
+    selectedPriceRange,
+    handlePriceRangeChange,
+} = useDJListing();
 
 useHead({
     title: 'Onboarding',
 })
 </script>
+
+<style scoped>
+.selected {
+    opacity: 1;
+}
+</style>
