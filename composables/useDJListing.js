@@ -1,4 +1,7 @@
 export const useDJListing = () => {
+  // firebase variables
+  const { db, setDoc, doc, isLoading } = useAuth();
+
   const selectedDays = ref([]);
   const selectedRegions = ref([]);
   const selectedEvents = ref([]);
@@ -9,15 +12,14 @@ export const useDJListing = () => {
 
   let selectedPriceRange = null;
 
-  const handlePriceRangeChange = (event) => {
-    selectedPriceRange = event.target.value;
-    console.log(selectedPriceRange);
-  };
-
   onMounted(() => {
     const priceRangeSelect = document.getElementById("price-range");
     priceRangeSelect.addEventListener("change", handlePriceRangeChange);
   });
+
+  const handlePriceRangeChange = (event) => {
+    selectedPriceRange = event.target.value;
+  };
 
   const events = [
     "wedding",
@@ -114,7 +116,6 @@ export const useDJListing = () => {
       }
     }
 
-    console.log(selectedDaysList.value);
   };
 
   const toggleRegion = (region) => {
@@ -128,7 +129,6 @@ export const useDJListing = () => {
       selectedRegionsList.value.push(region);
     }
 
-    console.log(selectedRegionsList.value);
   };
 
   const toggleEvent = (event) => {
@@ -142,8 +142,33 @@ export const useDJListing = () => {
       selectedEventsList.value.push(event);
     }
 
-    console.log(selectedEventsList.value);
   };
+
+  async function setdjListing() {
+    isLoading.value = true;
+
+    const user = await getCurrentUser();
+
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(
+        userRef,
+        {
+          daysAvailable: selectedDaysList.value,
+          eventsAvailable: selectedEventsList.value,
+          regionsAvailable: selectedRegionsList.value,
+          priceRange: selectedPriceRange,
+        },
+        {
+          merge: true,
+        }
+      );
+      navigateTo("/home");
+    } else {
+      isLoading.value = false;
+      console.error("User is undefined or user.value is not set.");
+    }
+  }
 
   return {
     selectedDays,
@@ -160,5 +185,7 @@ export const useDJListing = () => {
     selectedRegionsList,
     selectedPriceRange,
     handlePriceRangeChange,
+    setdjListing,
+    isLoading,
   };
 };

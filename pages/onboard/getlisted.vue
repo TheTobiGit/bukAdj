@@ -11,7 +11,7 @@
     <div class="flex flex-col gap-2">
         <label for="days">Which days are you available to work?</label>
         <div class="flex flex-wrap gap-2 ">
-            <div v-for="day in days" :key="day" @click="toggleDay(day)" :class="{ 'selected': selectedDays.includes(day) }"  class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+            <div v-for="day in days" :key="day" @click="toggleDay(day)" :class="{ 'selected': selectedDays.includes(day) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
                 {{ day }}
             </div>
         </div>
@@ -47,7 +47,10 @@
         </select>
     </div>
 
-    <NuxtLink to="/home" class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3 text-center">Save</NuxtLink>
+    <button @click="setdjListing"  class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center h-10">
+        <Loader v-if="isLoading" />
+        <p v-else>Save</p>
+    </button>
 
     <div class="flex justify-center gap-2 mt-auto">
         <div class="w-10 h-2 rounded-full bg-[#c2c2c5]"></div>
@@ -72,6 +75,8 @@ const {
     selectedRegionsList,
     selectedPriceRange,
     handlePriceRangeChange,
+    setdjListing,
+    isLoading
 } = useDJListing();
 
 useHead({
