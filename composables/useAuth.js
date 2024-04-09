@@ -89,7 +89,7 @@ export const useAuth = () => {
 
       if (docSnap.exists()) {
         // const data = docSnap.data();
-        console.log("user exists");
+        // console.log("user exists");
 
         navigateTo("/home");
       } else {
@@ -103,6 +103,17 @@ export const useAuth = () => {
       isLoading.value = false;
     }
   };
+
+  //function to signout user
+  async function signout() {
+    signOut(auth)
+      .then(() => {
+        navigateTo("/auth");
+      })
+      .catch((error) => {
+        console.log(errorMessage.value);
+      });
+  }
 
   return {
     email,
@@ -122,5 +133,6 @@ export const useAuth = () => {
     doc,
     user,
     db,
+    signout
   };
 };

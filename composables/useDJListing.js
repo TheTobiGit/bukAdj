@@ -12,10 +12,10 @@ export const useDJListing = () => {
 
   let selectedPriceRange = null;
 
-  onMounted(() => {
-    const priceRangeSelect = document.getElementById("price-range");
-    priceRangeSelect.addEventListener("change", handlePriceRangeChange);
-  });
+  // onMounted(() => {
+  //   const priceRangeSelect = document.getElementById("price-range");
+  //   priceRangeSelect.addEventListener("change", handlePriceRangeChange);
+  // });
 
   const handlePriceRangeChange = (event) => {
     selectedPriceRange = event.target.value;

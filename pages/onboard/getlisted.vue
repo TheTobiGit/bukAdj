@@ -1,11 +1,8 @@
 <template>
 <section class="min-h-svh w-screen bg-[#206A5D] flex flex-col text-[#EBECF1] p-4 gap-5">
-    <div class="flex items-center justify-between">
-        <NuxtLink to="/onboard/profile" class="">
-            <Icon name="material-symbols:arrow-back-ios" class="w-6 h-6" />
-        </NuxtLink>
-
-        <p class="text-lg ">Get Listed</p>
+    <div class="flex items-center justify-end">
+      
+      <img src="/public/logo.png" alt="" class="w-32">
     </div>
 
     <div class="flex flex-col gap-2">

@@ -1,16 +1,18 @@
 <template>
 <section class="min-h-svh w-screen bg-[#206A5D] flex flex-col text-[#EBECF1] p-4 gap-5">
     <div class="flex items-center justify-between">
-        <NuxtLink to="./" class="">
+        <button to="./" class="">
             <Icon name="material-symbols:arrow-back-ios" class="w-6 h-6" />
-        </NuxtLink>
+        </button>
 
         <p class="text-lg ">Profile Setup</p>
     </div>
 
-    <div class="h-[8rem] w-[8rem] rounded-full bg-[#c2c2c5] self-center grid place-items-center">
-        <Icon name="ooui:image-gallery" class="w-[3rem] h-[3rem]" />
-    </div>
+    <input type="file" id="image" name="image" accept="image/*" style="display: none" @change="onImageChange" ref="imageInput" />
+    <button class="h-[8rem] w-[8rem] rounded-full bg-[#c2c2c5] self-center grid place-items-center" @click="openImageSelector">
+      <img v-if="selectedImage" :src="selectedImage" class="rounded-full w-[8rem] h-[8rem]" />
+      <Icon v-else name="ooui:image-gallery" class="w-[3rem] h-[3rem]" />
+    </button>
 
     <form class="flex flex-col gap-5" @submit.prevent="setdjProfile">
         <div class="flex flex-col gap-2">
@@ -40,6 +42,19 @@
 </template>
 
 <script setup>
+const imageInput = ref(null);
+const selectedImage = ref(null);
+
+const openImageSelector = () => {
+  imageInput.value.click();
+};
+
+const onImageChange = (event) => {
+  const file = event.target.files[0];
+  selectedImage.value = URL.createObjectURL(file);
+  console.log(selectedImage.value);
+};
+
 const {
     djName,
     djPhone,
@@ -47,6 +62,7 @@ const {
     setdjProfile,
     isLoading
 } = useDjProfile();
+
 
 useHead({
     title: 'Onboarding',

@@ -1,22 +1,46 @@
 <template>
   <section class="h-svh w-screen bg-[#206A5D] flex flex-col text-[#EBECF1] p-4 gap-5">
-    <div class="flex items-center justify-between">
-      <NuxtLink to="./" class="">
-            <Icon name="material-symbols:arrow-back-ios" class="w-6 h-6" />
-        </NuxtLink>
-        
-      <p class="text-lg ">Profile Setup</p>
-    </div>
-
     
+    <div class="flex items-center justify-end">
+      
+      <img src="/public/logo.png" alt="" class="w-32">
+    </div>
 
     <form class="flex flex-col gap-5">
       <div class="flex flex-col gap-2">
-        <label for="phone">Phone Number <span class="text-xs italic">(required)</span></label>
-        <input type="tel" id="phone" name="phone" placeholder="your phone number" class="w-full p-2 bg-current focus:outline-none" />
-      </div>
+        <label for="region">Which region are you in?</label>
+        <div class="flex flex-wrap gap-2 ">
+            <div v-for="region in regions" :key="region" @click="toggleRegion(region)" :class="{ 'selected': selectedRegions.includes(region) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+                {{ region }}
+            </div>
+        </div>
+    </div>
 
-      <button class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3">Continue</button>
+    <div class="flex flex-col gap-2">
+        <label for="events">What type of event do you want a DJ for?</label>
+        <div class="flex flex-wrap gap-2 ">
+            <div v-for="event in events" :key="event" @click="toggleEvent(event)" :class="{ 'selected': selectedEvents.includes(event) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+                {{ event }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex flex-col gap-2">
+      <label for=" price-range">What is your budget?</label>
+      <select id="price-range" name="price-range" class="w-full p-2 bg-[#EBECF1] text-[#1A1B25] focus:outline-none rounded-lg">
+        <option value="0-100">GHS0 - GHS100</option>
+        <option value="100-200">GHS100 - GHS200</option>
+        <option value="200-300">GHS200 - GHS300</option>
+        <option value="300-400">GHS300 - GHS400</option>
+        <option value="400-500">GHS400 - GHS500</option>
+        <option value="500+">GHS500+</option>
+      </select>
+    </div>
+
+    <button @click="setdjListing"  class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center h-10">
+        <Loader v-if="isLoading" />
+        <p v-else>Continue</p>
+    </button>
     </form>
 
     <div class="flex justify-center gap-2 mt-auto">
@@ -27,5 +51,29 @@
 </template>
 
 <script setup>
+const {
+    selectedDays,
+    selectedDaysList,
+    events,
+    days,
+    regions,
+    toggleDay,
+    toggleEvent,
+    selectedEvents,
+    selectedEventsList,
+    toggleRegion,
+    selectedRegions,
+    selectedRegionsList,
+    selectedPriceRange,
+    handlePriceRangeChange,
+    setdjListing,
+    isLoading
+} = useDJListing();
 
 </script>
+
+<style scoped>
+.selected {
+    opacity: 1;
+}
+</style>

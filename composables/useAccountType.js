@@ -1,43 +1,46 @@
 export const useAccountType = () => {
-       /* ---------- Variables ---------- */
-  
-    // firebase variables
-    const { db, setDoc, doc, isLoading } = useAuth();
+  /* ---------- Variables ---------- */
 
-    // user credentials variables
-    const accountType = ref("");
+  // firebase variables
+  const { db, setDoc, doc, isLoading } = useAuth();
 
-    //function to set account type
-    async function setAccountType(type) {
-        isLoading.value = true;
+  // user credentials variables
+  const accountType = ref("");
 
-        const user = await getCurrentUser()
-    
-        accountType.value = type;
-      
-        if (user) {
-          const userRef = doc(db, "users", user.uid);
-          await setDoc(
-            userRef,
-            {
-              accountType: accountType.value,
-            },
-            {
-              merge: true,
-            }
-          );
-          navigateTo("/onboard/profile");
-        } else {
-            isLoading.value = false;
-          console.error("User is undefined or user.value is not set.");
+  //function to set account type
+  async function setAccountType(type) {
+    isLoading.value = true;
+
+    const user = await getCurrentUser();
+
+    accountType.value = type;
+
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(
+        userRef,
+        {
+          accountType: accountType.value,
+        },
+        {
+          merge: true,
         }
+      );
+      // Navigate based on account type
+      if (accountType.value === "DJ") {
+        navigateTo("/onboard/profile/DJ");
+      } else {
+        navigateTo("/onboard/client");
       }
-  
-  
-    return {
-        accountType,
-        setAccountType,
-        isLoading
-    };
+    } else {
+      isLoading.value = false;
+      console.error("User is undefined or user.value is not set.");
+    }
+  }
+
+  return {
+    accountType,
+    setAccountType,
+    isLoading,
   };
-  
+};

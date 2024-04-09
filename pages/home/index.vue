@@ -10,7 +10,8 @@
   <section class="flex flex-col items-center gap-5 p-4 min-h-svh lg:hidden">
     <div class="flex items-center self-start justify-between w-full">
       <img src="/public/logo-black.png" alt="" class="w-[8rem]">
-      <NuxtLink to="/auth/login">Login</NuxtLink>
+      <NuxtLink v-if="!user" to="/auth/login">Login</NuxtLink>
+      <button @click="signout" v-else class="text-red-400" >Logout</button>
     </div>
     
     <div class="flex flex-col self-start w-full gap-3">
@@ -53,6 +54,11 @@
 </template>
 
 <script setup>
+const user = await getCurrentUser()
+
+const { signout } = useAuth();
+
+
 definePageMeta({
   layout: 'client',
 })
