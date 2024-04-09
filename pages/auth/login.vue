@@ -19,17 +19,20 @@
 
     <p class="text-3xl font-semibold">Login to GrooveOn</p>
 
-    <form class="flex flex-col gap-5">
+    <form @submit.prevent="login"  class="flex flex-col gap-5">
         <div class="flex flex-col gap-2">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="youremail@mail.com" class="w-full p-2 bg-current focus:outline-none" />
+            <label for="login">Email</label>
+            <input v-model="email" type="email" id="email" name="email" placeholder="youremail@mail.com" class="w-full p-2 text-black bg-[#EBECF1] focus:outline-none" required />
         </div>
         <div class="flex flex-col gap-2">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="your password" class="w-full p-2 bg-current focus:outline-none" />
+            <input v-model="password" type="password" id="password" name="password" placeholder="your password" class="w-full p-2 text-black bg-[#EBECF1] focus:outline-none" required />
         </div>
 
-        <button class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg mt-3">Login</button>
+        <button type="submit"  class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center h-10">
+            <Loader v-if="isLoading" />
+            <p v-else>Login</p>
+        </button>
     </form>
 
     <div class="flex items-center justify-evenly">
@@ -44,9 +47,16 @@
     </button>
 
 </section>
-</template>
+</template> 
 
 <script setup>
+const { isLoading, signIn, email, password } = useAuth();
+
+const login = async () => {
+  await signIn(email, password);
+};
+
+
 useHead({
     title: 'Login',
 })

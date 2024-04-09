@@ -78,6 +78,8 @@ export const useAuth = () => {
 
   // function to log in user
   const signIn = async (email, password) => {
+    console.log("clicked");
+
     isLoading.value = true;
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
@@ -119,6 +121,6 @@ export const useAuth = () => {
     setDoc,
     doc,
     user,
-    db
+    db,
   };
 };
