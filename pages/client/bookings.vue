@@ -6,6 +6,11 @@
 </template>
 
 <script setup>
+const { getDoc, setDoc, doc, db } = useAuth();
+const user = await getCurrentUser();
+const userDoc = await getDoc(doc(db, "users", user.uid));
+const userData = userDoc.data();
+
   definePageMeta({
   layout: 'client',
 })

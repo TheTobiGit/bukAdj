@@ -163,7 +163,7 @@ export const useDJListing = () => {
           merge: true,
         }
       );
-      navigateTo("/home");
+      navigateTo("/dj/bookings");
     } else {
       isLoading.value = false;
       console.error("User is undefined or user.value is not set.");

@@ -1,5 +1,10 @@
 <template>
-  <section class="flex flex-col items-center gap-5 p-4 min-h-svh">
+  <section v-if="!user" class="flex flex-col items-center gap-5 p-4 min-h-svh">
+    <p>log in to see your profile</p>
+  </section>
+
+  <section v-else class="flex flex-col items-center gap-5 p-4 min-h-svh">
+
     <button class="self-end">Edit Profile</button>
 
     <div class="h-[8rem] w-[8rem] rounded-full bg-[#c2c2c5] self-center grid place-items-center">
@@ -42,14 +47,12 @@
 </template>
 
 <script setup>
-const user = await getCurrentUser()
-
 const { getDoc, setDoc, doc, db } = useAuth();
-
+const user = await getCurrentUser();
 const userDoc = await getDoc(doc(db, "users", user.uid));
 const userData = userDoc.data();
 
 definePageMeta({
-  layout: 'client',
+  layout: 'dj',
 })
 </script>
