@@ -3,7 +3,8 @@
     <button class="self-end">Edit Profile</button>
 
     <div class="h-[8rem] w-[8rem] rounded-full bg-[#c2c2c5] self-center grid place-items-center">
-        <Icon name="ooui:image-gallery" class="w-[3rem] h-[3rem]" />
+      <img v-if="user" :src="userData.djArt" class="rounded-full w-[8rem] h-[8rem]" />
+      <Icon v-else name="ooui:image-gallery" class="w-[3rem] h-[3rem]" />
     </div>
 
     <p>{{ userData.djName }} <span>- {{ userData.djPhone }}</span></p>

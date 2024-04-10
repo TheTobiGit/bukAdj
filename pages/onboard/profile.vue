@@ -42,19 +42,6 @@
 </template>
 
 <script setup>
-const imageInput = ref(null);
-const selectedImage = ref(null);
-
-const openImageSelector = () => {
-  imageInput.value.click();
-};
-
-const onImageChange = (event) => {
-  const file = event.target.files[0];
-  selectedImage.value = URL.createObjectURL(file);
-  console.log(selectedImage.value);
-};
-
 const {
     djName,
     djPhone,
@@ -63,6 +50,7 @@ const {
     isLoading
 } = useDjProfile();
 
+const { imageInput, selectedImage, openImageSelector, onImageChange } = useDjProfile();
 
 useHead({
     title: 'Onboarding',
