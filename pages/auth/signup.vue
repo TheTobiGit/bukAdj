@@ -90,7 +90,7 @@
 
     <button
       @click="logInWithGoogle"
-      class="flex bg-[#EBECF1] text-[#1A1B25] text-center gap-3 justify-center p-2 rounded-lg"
+      class="flex bg-[#EBECF1] text-[#1A1B25] text-center gap-3 justify-center p-2 rounded-lg h-11"
     > 
       <Loader v-if="isAuthenticating" />
       <div v-else  class="flex gap-3">
