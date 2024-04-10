@@ -10,11 +10,11 @@ export const useDjProfile = () => {
   const djName = ref("");
   const djPhone = ref("");
   const djDescription = ref("");
-  const djArt = ref("");
 
   // image input variables
   const imageInput = ref(null);
   const selectedImage = ref(null);
+
 
   const openImageSelector = () => {
     imageInput.value.click();
@@ -23,17 +23,33 @@ export const useDjProfile = () => {
   const onImageChange = async (event) => {
     const file = event.target.files[0];
     selectedImage.value = URL.createObjectURL(file);
-    const imageRef = storageRef(storage, `djART/${file.name}`);
-    const snapshot = await uploadBytesResumable(imageRef, file);
-    const downloadURL = await getDownloadURL(imageRef);
-    return downloadURL;
+
+    const user = await getCurrentUser();
+
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+
+      const imageRef = storageRef(storage, `djART/${user.uid}/${"djArt"}`);
+      const snapshot = await uploadBytesResumable(imageRef, file);
+      const downloadURL = await getDownloadURL(imageRef);
+
+      await setDoc(
+        userRef,
+        {
+          djArt: downloadURL,
+        },
+        {
+          merge: true,
+        }
+      );
+
+    }
   };
 
   // function to set dj profile
-  async function setdjProfile(downloadURL) {
+  async function setdjProfile() {
     isLoading.value = true;
-
-    console.log(downloadURL);
+    console.log(usefile.value);
 
     const user = await getCurrentUser();
 
