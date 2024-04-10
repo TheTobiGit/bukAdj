@@ -28,7 +28,7 @@ export const useAccountType = () => {
       );
       // Navigate based on account type
       if (accountType.value === "DJ") {
-        navigateTo("/onboard/profile/DJ");
+        navigateTo("/onboard/profile/");
       } else {
         navigateTo("/onboard/client");
       }
