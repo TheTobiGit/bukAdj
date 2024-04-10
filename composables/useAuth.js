@@ -88,9 +88,6 @@ export const useAuth = () => {
       const docSnap = await getDoc(userRef);
 
       if (docSnap.exists()) {
-        // const data = docSnap.data();
-        // console.log("user exists");
-
         navigateTo("/home");
       } else {
         navigateTo("/onboard");
@@ -103,6 +100,27 @@ export const useAuth = () => {
       isLoading.value = false;
     }
   };
+
+    // function to sign in user using google
+    async function googleAuth() {
+      try {
+        isAuthenticating.value = true;
+        await signInWithPopup(auth, provider);
+  
+        const userRef = doc(db, "users", user.value.uid);
+        const docSnap = await getDoc(userRef);
+  
+        if (docSnap.exists()) {
+          navigateTo("/home");
+        }else {
+          navigateTo("/onboard");
+        }
+      } catch (error) {
+        errorMessage.value = error.message;
+        console.log(errorMessage.value);
+        return;
+      }
+    }
 
   //function to signout user
   async function signout() {
@@ -133,6 +151,8 @@ export const useAuth = () => {
     doc,
     user,
     db,
-    signout
+    signout,
+    googleAuth,
+    isAuthenticating
   };
 };
