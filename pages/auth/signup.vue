@@ -98,6 +98,8 @@
         <p class="self-center">continue with google</p>
       </div>
     </button>
+
+    <p class="text-sm text-center">Already have an account? <NuxtLink class="italic font-semibold underline" to="/auth/login">Login</NuxtLink></p>
   </section>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
-  <section v-if="!user" class="flex flex-col items-center gap-5 p-4 min-h-svh">
-    <p>log in to see your profile</p>
+  <section v-if="!user" class="flex flex-col items-center justify-center gap-5 p-4 min-h-svh">
+    <NuxtLink to="/auth/login" class="font-semibold">LOGIN</NuxtLink>
   </section>
 
-  <section v-else class="flex flex-col items-center gap-5 p-4 min-h-svh">
+  <section v-if="user" class="flex flex-col items-center gap-5 p-4 min-h-svh">
 
-    <button class="self-end">Edit Profile</button>
+    <NuxtLink to="/dj/editprofile" class="self-end">Edit Profile</NuxtLink>
 
     <div class="h-[8rem] w-[8rem] rounded-full bg-[#c2c2c5] self-center grid place-items-center">
       <img v-if="user" :src="userData.djArt" class="rounded-full w-[8rem] h-[8rem]" />
@@ -43,14 +43,26 @@
       </div>
     </div>
 
+    <button @click="signout" class="text-red-400" >Logout</button>
+
   </section>
 </template>
 
 <script setup>
 const { getDoc, setDoc, doc, db } = useAuth();
 const user = await getCurrentUser();
-const userDoc = await getDoc(doc(db, "users", user.uid));
-const userData = userDoc.data();
+
+const userData = ref({});
+
+if (user) {
+  const userDoc = await getDoc(doc(db, "users", user.uid));
+  userData.value = userDoc.data();
+}
+
+// const userDoc = await getDoc(doc(db, "users", user.uid));
+// const userData = userDoc.data();
+
+const { signout } = useAuth();
 
 definePageMeta({
   layout: 'dj',

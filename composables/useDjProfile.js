@@ -49,7 +49,6 @@ export const useDjProfile = () => {
   // function to set dj profile
   async function setdjProfile() {
     isLoading.value = true;
-    console.log(usefile.value);
 
     const user = await getCurrentUser();
 
@@ -61,7 +60,6 @@ export const useDjProfile = () => {
           djName: djName.value,
           djPhone: djPhone.value,
           djDescription: djDescription.value,
-          // djArt: downloadURL,
         },
         {
           merge: true,

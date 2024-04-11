@@ -9,7 +9,7 @@ import {
   signOut,
   updatePassword,
 } from "@firebase/auth";
-import { getDoc, setDoc, doc } from "@firebase/firestore";
+import { getDoc, setDoc, doc, collection, query, where, getDocs } from "@firebase/firestore";
 
 export const useAuth = () => {
   /* ---------- Variables ---------- */
@@ -153,6 +153,10 @@ export const useAuth = () => {
     db,
     signout,
     googleAuth,
-    isAuthenticating
+    isAuthenticating,
+    collection,
+    query,
+    where,
+    getDocs,
   };
 };

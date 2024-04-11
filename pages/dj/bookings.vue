@@ -1,6 +1,6 @@
 <template>
-  <section v-if="!user" class="flex flex-col items-center gap-5 p-4 min-h-svh">
-    <p>log in to see your bookings</p>
+  <section v-if="!user" class="flex flex-col items-center justify-center gap-5 p-4 min-h-svh">
+    <NuxtLink to="/auth/login" class="font-semibold">LOGIN</NuxtLink>
   </section>
 
   <section v-else class="flex flex-col items-center justify-center gap-5 p-4 min-h-svh">
@@ -12,8 +12,15 @@
 <script setup>
 const { getDoc, setDoc, doc, db } = useAuth();
 const user = await getCurrentUser();
-const userDoc = await getDoc(doc(db, "users", user.uid));
+
+const userData = ref({});
+
+if (user) {
+  const userDoc = await getDoc(doc(db, "users", user.uid));
 const userData = userDoc.data();
+}
+
+
 
   definePageMeta({
   layout: 'dj',
