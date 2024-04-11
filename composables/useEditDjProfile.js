@@ -66,7 +66,6 @@ export const useEditDjProfile = () => {
             merge: true,
           }
         );
-        console.log("worked");
         navigateTo("/onboard/getlisted");
       } else {
         isLoading.value = false;

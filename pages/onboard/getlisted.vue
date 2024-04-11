@@ -34,8 +34,9 @@
 
     <div class="flex flex-col gap-2">
         <label for="">How much do you charge per event?</label>
-        <select id="price-range" name="price-range" class="w-full p-2 bg-[#EBECF1] text-[#1A1B25] focus:outline-none rounded-lg">
-            <option value="0-100">GHS0 - GHS100</option>
+        <select id="price-range" name="price-range" @change="handlePriceChange" class="w-full p-2 bg-[#EBECF1] text-[#1A1B25] focus:outline-none rounded-lg">
+            <option value="0" selected disabled></option>
+            <option value="1-100">GHS1 - GHS100</option>
             <option value="100-200">GHS100 - GHS200</option>
             <option value="200-300">GHS200 - GHS300</option>
             <option value="300-400">GHS300 - GHS400</option>
@@ -71,9 +72,9 @@ const {
     selectedRegions,
     selectedRegionsList,
     selectedPriceRange,
-    handlePriceRangeChange,
     setdjListing,
-    isLoading
+    isLoading,
+    handlePriceChange
 } = useDJListing();
 
 useHead({

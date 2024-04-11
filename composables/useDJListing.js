@@ -10,16 +10,12 @@ export const useDJListing = () => {
   const selectedEventsList = ref([]);
   const selectedRegionsList = ref([]);
 
-  let selectedPriceRange = null;
+  const selectedPriceRange = ref('0-100');
 
-  // onMounted(() => {
-  //   const priceRangeSelect = document.getElementById("price-range");
-  //   priceRangeSelect.addEventListener("change", handlePriceRangeChange);
-  // });
-
-  const handlePriceRangeChange = (event) => {
-    selectedPriceRange = event.target.value;
-  };
+  function handlePriceChange(event) {
+    selectedPriceRange.value = event.target.value;
+    console.log(selectedPriceRange.value);
+} 
 
   const events = [
     "wedding",
@@ -157,7 +153,7 @@ export const useDJListing = () => {
           daysAvailable: selectedDaysList.value,
           eventsAvailable: selectedEventsList.value,
           regionsAvailable: selectedRegionsList.value,
-          priceRange: selectedPriceRange,
+          priceRange: selectedPriceRange.value,
         },
         {
           merge: true,
@@ -184,8 +180,8 @@ export const useDJListing = () => {
     selectedRegions,
     selectedRegionsList,
     selectedPriceRange,
-    handlePriceRangeChange,
     setdjListing,
     isLoading,
+    handlePriceChange,
   };
 };
