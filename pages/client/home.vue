@@ -20,9 +20,9 @@
         <button class="bg-[#1F6A5D] text-[#EBECF1] p-2 rounded-lg">Search</button>
     </div>
 
-    <div class="flex flex-col self-start w-full gap-3 mt-2 overflow-x-scroll">
+    <div class="flex flex-col flex-wrap self-start gap-3 mt-2">
         <p class="text-xl font-semibold">Recommended DJ's for you</p>
-        <div class="flex gap-2 w-max">
+        <div class="flex flex-wrap w-full gap-2 justify-evenly">
           <div v-for="dj in djs" :key="dj.id" class="h-[10rem] w-[10rem] border flex flex-col items-center p-1 justify-evenly">
             <NuxtLink :to="`/client/${dj.id}`" class="w-[80%] h-[80%]">
                 <img :src="dj.djArt" alt="" class="w-full h-full rounded-full">

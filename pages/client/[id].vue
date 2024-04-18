@@ -46,17 +46,21 @@
 
     <div class="flex flex-col self-start gap-2">
         <p>Price Range</p>
-        <div class="flex flex-wrap gap-2 ">
+        <div class="flex flex-wrap gap-2">
             <div v-for="price in dj.priceRange" :key="price" class="flex flex-col gap-2 shadow-sm rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
                 {{ price }}
             </div>
         </div>
     </div>
 
+    <button class="bg-[#1F6A5D] text-[#EBECF1] p-2 rounded-lg text-center h-10"  :class="{'bg-gray-400': !user}" :disabled="!user">Book Now</button>
+
 </section>
 </template>
 
 <script setup>
+const user = await getCurrentUser()
+
 const {
     getDoc,
     setDoc,
