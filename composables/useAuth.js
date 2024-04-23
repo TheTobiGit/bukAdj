@@ -78,7 +78,6 @@ export const useAuth = () => {
 
   // function to log in user
   const signIn = async (email, password) => {
-    console.log("clicked");
 
     isLoading.value = true;
     try {
