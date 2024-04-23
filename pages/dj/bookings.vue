@@ -43,8 +43,6 @@ const bookings = bookingsSnapshot.docs.map(doc => ({
     ...doc.data()
 }));
 
-console.log(bookings);
-
   definePageMeta({
   layout: 'dj',
 })
