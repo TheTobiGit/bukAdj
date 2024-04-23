@@ -9,8 +9,8 @@
     <form class="flex flex-col gap-5">
       <div class="flex flex-col gap-2">
         <label for="region">Which region are you in?</label>
-        <div class="flex flex-wrap gap-2 ">
-            <div v-for="region in regions" :key="region" @click="toggleRegion(region)" :class="{ 'selected': selectedRegions.includes(region) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+        <div class="flex flex-wrap gap-2">
+            <div v-for="region in regions" :key="region" @click="toggleRegion(region)" :class="{ 'selected': selectedRegions.includes(region) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65 cursor-pointer">
                 {{ region }}
             </div>
         </div>
@@ -19,7 +19,7 @@
     <div class="flex flex-col gap-2">
         <label for="events">What type of event do you want a DJ for?</label>
         <div class="flex flex-wrap gap-2 ">
-            <div v-for="event in events" :key="event" @click="toggleEvent(event)" :class="{ 'selected': selectedEvents.includes(event) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65">
+            <div v-for="event in events" :key="event" @click="toggleEvent(event)" :class="{ 'selected': selectedEvents.includes(event) }" class="flex flex-col gap-2 shadow-lg rounded-lg p-1 bg-[#EBECF1] text-sm text-[#1A1B25] opacity-65 cursor-pointer">
                 {{ event }}
             </div>
         </div>
@@ -27,14 +27,15 @@
     
     <div class="flex flex-col gap-2">
       <label for=" price-range">What is your budget?</label>
-      <select id="price-range" name="price-range" class="w-full p-2 bg-[#EBECF1] text-[#1A1B25] focus:outline-none rounded-lg">
-        <option value="0-100">GHS0 - GHS100</option>
-        <option value="100-200">GHS100 - GHS200</option>
-        <option value="200-300">GHS200 - GHS300</option>
-        <option value="300-400">GHS300 - GHS400</option>
-        <option value="400-500">GHS400 - GHS500</option>
-        <option value="500+">GHS500+</option>
-      </select>
+        <select id="price-range" name="price-range" @change="handlePriceChange" class="w-full p-2 bg-[#EBECF1] text-[#1A1B25] focus:outline-none rounded-lg">
+            <option value="0" selected disabled></option>
+            <option value="1-100">GHS1 - GHS100</option>
+            <option value="100-200">GHS100 - GHS200</option>
+            <option value="200-300">GHS200 - GHS300</option>
+            <option value="300-400">GHS300 - GHS400</option>
+            <option value="400-500">GHS400 - GHS500</option>
+            <option value="500+">GHS500+</option>
+        </select>
     </div>
 
     <button @click="setdjListing"  class="bg-[#EBECF1] text-[#1A1B25] p-2 rounded-lg text-center h-10">
@@ -48,7 +49,7 @@
       <div class="w-[4rem] h-2 rounded-full bg-[#EBECF1]"></div>
     </div>
   </section>
-</template>
+</template> 
 
 <script setup>
 const {
@@ -68,7 +69,7 @@ const {
     handlePriceRangeChange,
     setdjListing,
     isLoading
-} = useDJListing();
+} = useClientProfile();
 
 </script>
 
