@@ -1,5 +1,6 @@
 <template>
-<section class="flex flex-col items-center gap-5 p-4 min-h-svh">
+<section class="flex justify-center w-screen">
+    <section class="flex flex-col items-center gap-5 p-4 min-h-svh lg:max-w-[1024px] w-full lg:border-x">
     <div class="flex items-center self-start justify-between">
         <NuxtLink to="./home" class="">
             <Icon name="material-symbols:arrow-back-ios" class="w-6 h-6" />
@@ -55,7 +56,7 @@
 
     <button @click="showModel = true" class="bg-[#1F6A5D] text-[#EBECF1] p-2 rounded-lg text-center h-10" :class="{'bg-gray-400': !user}" :disabled="!user">Book Now</button>
 
-</section>
+</section></section>
 
 <div v-if="showModel" class="absolute top-0 left-0 z-40 flex items-center justify-center w-full h-full text-white bg-gray-800/90">
     <form @submit.prevent="bookEvent" class="flex flex-col w-full gap-4 p-4">

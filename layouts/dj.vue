@@ -1,6 +1,8 @@
 <template>
   <div>
     <slot />
-   <DJBottomNavBar class="sticky mt-auto bottom-3" />
+   <div class="sticky flex justify-center w-screen mt-auto bottom-3 ">
+    <DJBottomNavBar class="lg:max-w-[1024px]" />
+  </div>
   </div>
 </template>

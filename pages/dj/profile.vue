@@ -1,9 +1,9 @@
 <template>
-  <section v-if="!user" class="flex flex-col items-center justify-center gap-5 p-4 min-h-svh">
+<section class="flex justify-center w-screen">  <section v-if="!user" class="flex flex-col items-center justify-center gap-5 p-4 min-h-svh">
     <NuxtLink to="/auth/login" class="font-semibold">LOGIN</NuxtLink>
   </section>
 
-  <section v-if="user" class="flex flex-col items-center gap-5 p-4 min-h-svh">
+  <section v-if="user" class="flex flex-col items-center gap-5 p-4 min-h-[94svh] lg:max-w-[1024px] w-full">
 
     <NuxtLink to="/dj/editprofile" class="self-end">Edit Profile</NuxtLink>
 
@@ -45,7 +45,7 @@
 
     <button @click="signout" class="text-red-400" >Logout</button>
 
-  </section>
+  </section></section>
 </template>
 
 <script setup>
@@ -58,9 +58,6 @@ if (user) {
   const userDoc = await getDoc(doc(db, "users", user.uid));
   userData.value = userDoc.data();
 }
-
-// const userDoc = await getDoc(doc(db, "users", user.uid));
-// const userData = userDoc.data();
 
 const { signout } = useAuth();
 

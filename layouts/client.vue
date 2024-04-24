@@ -1,6 +1,8 @@
 <template>
   <div>
     <slot />
-   <BottomNavBar class="sticky mt-auto bottom-3" />
+    <div class="sticky flex justify-center w-screen mt-auto bottom-3 ">
+    <BottomNavBar class="lg:max-w-[1024px]" />
+  </div>
   </div>
 </template>
